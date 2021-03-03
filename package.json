@@ -1,0 +1,50 @@
+{
+  "name": "chartJSTest",
+  "version": "1.0.0",
+  "description": "chartJSTest",
+  "main": "index.js",
+  "scripts": {
+    "__sass": "node-sass web/scss/main.scss web/styles/main.css",
+    "__autoprefixer": "postcss -u autoprefixer -r web/styles/*",
+    "__uglify": "uglifyjs web/js/*.js -m -o web/scripts/js/app.js && uglifyjs js/*.js -m -c -o scripts/js/app.min.js",
+    "__build:css": "npm run sass && npm run autoprefixer",
+    "__watch:css": "onchange 'web/scss/**/*.scss' -- npm run build:css",
+    "__watch:js": "onchange 'web/scripts/js/*.js' -- npm run uglify",
+    "__dev": "parallelshell 'npm run watch:css' 'npm run watch:js'",
+    "__compile:sass": "node-sass web/styles/sass/main.scss bin/main.css -w",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run dev",
+    "scss": "npm run scss:compilesourcemap && npm run scss:compilesourcemap -- -w & npm run scss:livereload ",
+    "scss:watch": "node-sass --watch scss -o css",
+    "scss:compile": "node-sass web/styles/scss/main.scss web/styles/main.css",
+    "scss:compilesourcemap": "node-sass web/styles/scss/main.scss web/styles/main.css --source-map true",
+    "scss:livereload": "livereload web/",
+    "build:sass": "node-sass -r --output-style compressed src/style.scss -o dist",
+    "watch:sass": "npm run build:sass && npm run build:sass -- -w",
+    "_dev": "npm-run-all -p sass:*",
+    "dev": "npm-run-all -p sass:* & livereload '., web, templates' -w 1000 -d -e 'twig,scss,js'",
+    "build-task:scss-compile": "node-sass-chokidar --source-map true web/styles/scss/ -o web/styles/",
+    "build-task:scss-compile-min": "node-sass-chokidar --scss --output-style compressed web/styles/scss/ -o web/styles/min/",
+    "sass:build": "npm-run-all -p build-task:*",
+    "sass:watch": "chokidar 'web/styles/scss/**/*.scss' -c 'npm run sass:build'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@fonk.ams.gitlab.host:ing-art-management-iam/website.git"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.8.6",
+    "chart.js": "^2.9.4",
+    "chokidar-cli": "^2.1.0",
+    "livereload": "^0.9.1",
+    "node-sass": "^4.14.1",
+    "node-sass-chokidar": "^1.5.0",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^7.1.0",
+    "parallelshell": "^3.0.2",
+    "postcss-cli": "^7.1.2",
+    "uglify-js": "^3.12.5"
+  },
+  "author": "Matthijs Kamstra",
+  "license": "ISC"
+}
