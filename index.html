@@ -37,6 +37,12 @@
     <canvas id="myChart3" style="padding-bottom: 100px;"></canvas>
   </div>
 
+  <div class="container">
+    <h1 style="padding-bottom: 40px; padding-top: 100px;">Dekkingsgraad januari 2021</h1>
+    <p style="">Euro staatsobligaties 56%</p>
+    <canvas id="myChart4" widht="400" height="40" style="padding-bottom: 100px;"></canvas>
+  </div>
+
 
 
 
@@ -49,6 +55,7 @@
     Chart.defaults.global.defaultFontColor = '#000000';
 
     var massPopChart = new Chart(myChart, {
+
       type: 'bar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
       data: {
         labels: ['jan.', 'feb.', 'mrt.', 'apr.', 'mei.', 'jun.', 'jul.', 'aug.', 'sept.', 'okt.', 'nov.', 'dec.'],
@@ -106,11 +113,12 @@
               color: "#C6C0C0",
               //remove first border
               drawBorder: false,
-              zeroLineColor: '#ffcc33',
-              zeroLineColor: 'transparent'
+              zeroLineColor: "#ffcc33",
             },
             //add % sign on the right side and show the min-max including the steps it should take
             ticks: {
+              //padding between label and barchart
+              padding: 20,
               min: 95,
               max: this.max,// Your absolute max value
               stepSize: 5,
@@ -205,9 +213,28 @@
 
     // And for a doughnut chart
     var myDoughnutChart = new Chart(ctx, {
+      labels: {
+        render: 'percentage',
+        fontColor: function (data) {
+          var rgb = hexToRgb(data.dataset.backgroundColor[data.index]);
+          var threshold = 140;
+          var luminance = 0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b;
+          return luminance > threshold ? 'black' : 'white';
+        },
+        precision: 2
+      },
       type: 'doughnut',
       data: data,
       options: {
+        plugins: {
+          labels: {
+            // position to draw label, available value is 'default', 'border' and 'outside'
+            // bar chart ignores this
+            // default is 'default'
+            position: 'outside',
+          }
+        },
+
         //Duration animation
         animation: {
           duration: 2200,
@@ -219,6 +246,88 @@
           display: false
         },
 
+      }
+    });
+  </script>
+
+  <script>
+    var myChart = document.getElementById('myChart4').getContext('2d');
+
+    //Global options
+    Chart.defaults.global.defaultFontFamily = '"Lato",sans-serif';
+    Chart.defaults.global.defaultFontSize = 16;
+    Chart.defaults.global.defaultFontColor = '#000000';
+
+    var massPopChart = new Chart(myChart, {
+
+      type: 'horizontalBar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data: {
+        labels: ['jan.'],
+        datasets: [{
+          labels: 'Percentage',
+          data: [113,],
+          backgroundColor: '#b3effe',
+          hoverBackgroundColor: '#0098d9',
+          fontStyle: "bold",
+        }]
+      },
+      options: {
+        labels: {
+          display: false
+        },
+        //Duration animation
+        animation: {
+          duration: 3000,
+        },
+
+        //Remove legend
+        legend: {
+          display: false
+        },
+
+        tooltips: {
+          enabled: false,
+          mode: 'label',
+          //adding % sign in the tooltip
+          callbacks: {
+            label: function (tooltipItem, data) {
+              return data['datasets'][0]['data'][tooltipItem['index']] + '%';
+            }
+          }
+
+        },
+        layout: {
+          //Padding arround chart
+          padding: {
+            left: 0,
+            right: 0,
+            bottom: 0,
+            top: 0
+          }
+        },
+        scales: {
+
+          xAxes: [{
+            display: false, //this will remove all the x-axis grid lines  
+            //Bar widht
+            barPercentage: 0.5,
+            //Styling grid lines
+            gridLines: {
+              display: false
+            }
+          }],
+
+          yAxes: [{
+            display: false, //this will remove all the x-axis grid lines
+            gridLines: {
+              //remove first border
+              drawBorder: false,
+              display: false
+            },
+
+          }]
+
+        }
       }
     });
   </script>
