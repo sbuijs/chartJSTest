@@ -21,8 +21,19 @@
 
 <body>
   <div class="container">
-    <canvas id="myChart"></canvas>
+    <h1 style="padding-bottom: 40px; padding-top: 100px;">Dekkingsgraad 2020</h1>
+
+    <canvas id="myChart" style="padding-bottom: 100px;"></canvas>
+
   </div>
+
+  <div class="container">
+    <h1 style="padding-bottom: 40px; padding-top: 100px;">Dekkingsgraad januari 2021</h1>
+    <canvas id="myChart2" style="padding-bottom: 100px;"></canvas>
+  </div>
+
+
+
 
   <script>
     var myChart = document.getElementById('myChart').getContext('2d');
@@ -30,79 +41,130 @@
     //Global options
     Chart.defaults.global.defaultFontFamily = '"Lato",sans-serif';
     Chart.defaults.global.defaultFontSize = 16;
-    Chart.defaults.global.defaultFontColor = '#777';
+    Chart.defaults.global.defaultFontColor = '#000000';
 
     var massPopChart = new Chart(myChart, {
       type: 'bar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
       data: {
-        labels: ['jan', 'feb', 'mrt', 'apr', 'mei'],
+        labels: ['jan.', 'feb.', 'mrt.', 'apr.', 'mei.', 'jun.', 'jul.', 'aug.', 'sept.', 'okt.', 'nov.', 'dec.'],
         datasets: [{
           labels: 'Percentage',
-          data: [50, 45, 20, 90, 99],
+          data: [113, 108, 110, 106, 111, 104, 107, 110, 101, 106, 109, 114],
           backgroundColor: '#b3effe',
           hoverBackgroundColor: '#0098d9',
           fontStyle: "bold",
         }]
       },
       options: {
+        //Duration animation
+        animation: {
+          duration: 3000,
+        },
+
+        //Remove legend
         legend: {
           display: false
         },
+
         tooltips: {
           enabled: true,
+          mode: 'label',
+          //adding % sign in the tooltip
+          callbacks: {
+            label: function (tooltipItem, data) {
+              return data['datasets'][0]['data'][tooltipItem['index']] + '%';
+            }
+          }
+
         },
         layout: {
+          //Padding arround chart
           padding: {
             left: 0,
             right: 0,
             bottom: 0,
             top: 0
           }
+        },
+        scales: {
+          xAxes: [{
+            //Bar widht
+            barPercentage: 0.5,
+            //Styling grid lines
+            gridLines: {
+              display: false
+            }
+          }],
+
+          yAxes: [{
+            gridLines: {
+              color: "#C6C0C0",
+              //remove first border
+              drawBorder: false,
+              zeroLineColor: '#ffcc33',
+              zeroLineColor: 'transparent'
+            },
+            //add % sign on the right side and show the min-max including the steps it should take
+            ticks: {
+              min: 95,
+              max: this.max,// Your absolute max value
+              stepSize: 5,
+              callback: function (value) {
+                return (value / this.max * 115).toFixed() + '%'; // convert it to percentage
+              },
+            },
+          }]
+
         }
       }
     });
   </script>
 
-  <!-- <script>
-    var myChart = document.getElementById('myChart').getContext('2d');
 
-    //Global options
-    Chart.defaults.global.defaultFontFamily = '"Lato",sans-serif';
-    Chart.defaults.global.defaultFontSize = 16;
-    Chart.defaults.global.defaultFontColor = '#777';
 
-    var test = new Chart(myChart, {
-      type: 'doughnut', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
-      data: {
-        labels: ['jan', 'feb', 'mrt', 'apr', 'mei'],
-        datasets: [{
-          labels: 'Percentage',
-          data: [50, 45, 20, 90, 99],
-          backgroundColor: '#b3effe',
-          hoverBackgroundColor: '#0098d9',
-          fontStyle: "bold",
+
+
+
+
+  <script>
+    var data = {
+      labels: [
+        "Dekking",
+        " "
+      ],
+      datasets: [
+        {
+          data: [112, 88],
+          backgroundColor: [
+            "#b3effe"
+          ],
+          hoverBackgroundColor: [
+            "#0098d9"
+          ],
+          hoverBorderColor: [
+            "#0098d9"
+          ]
         }]
-      },
+    };
+
+    var ctx = document.getElementById("myChart2");
+
+    // And for a doughnut chart
+    var myDoughnutChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: data,
       options: {
+        //Change the thickness of the line
+        cutoutPercentage: 70,
+        //Remove legend
         legend: {
           display: false
         },
-        tooltips: {
-          enabled: true,
-        },
-        layout: {
-          padding: {
-            left: 0,
-            right: 0,
-            bottom: 0,
-            top: 0
-          }
-        }
+        rotation: 1 * Math.PI,
+        circumference: 1 * Math.PI
       }
     });
-  </script> -->
-
-
+  </script>
 </body>
 
 </html>
