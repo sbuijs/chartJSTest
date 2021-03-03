@@ -8,16 +8,100 @@
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+    integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <!-- stylesheets-->
   <link rel="stylesheet" href="main.css">
 
-  <title></title>
+  <title>ChartJSTest</title>
 
 </head>
 
 <body>
-  <h1>New project</h1>
+  <div class="container">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script>
+    var myChart = document.getElementById('myChart').getContext('2d');
+
+    //Global options
+    Chart.defaults.global.defaultFontFamily = '"Lato",sans-serif';
+    Chart.defaults.global.defaultFontSize = 16;
+    Chart.defaults.global.defaultFontColor = '#777';
+
+    var massPopChart = new Chart(myChart, {
+      type: 'bar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data: {
+        labels: ['jan', 'feb', 'mrt', 'apr', 'mei'],
+        datasets: [{
+          labels: 'Percentage',
+          data: [50, 45, 20, 90, 99],
+          backgroundColor: '#b3effe',
+          hoverBackgroundColor: '#0098d9',
+          fontStyle: "bold",
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: true,
+        },
+        layout: {
+          padding: {
+            left: 0,
+            right: 0,
+            bottom: 0,
+            top: 0
+          }
+        }
+      }
+    });
+  </script>
+
+  <!-- <script>
+    var myChart = document.getElementById('myChart').getContext('2d');
+
+    //Global options
+    Chart.defaults.global.defaultFontFamily = '"Lato",sans-serif';
+    Chart.defaults.global.defaultFontSize = 16;
+    Chart.defaults.global.defaultFontColor = '#777';
+
+    var test = new Chart(myChart, {
+      type: 'doughnut', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data: {
+        labels: ['jan', 'feb', 'mrt', 'apr', 'mei'],
+        datasets: [{
+          labels: 'Percentage',
+          data: [50, 45, 20, 90, 99],
+          backgroundColor: '#b3effe',
+          hoverBackgroundColor: '#0098d9',
+          fontStyle: "bold",
+        }]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: true,
+        },
+        layout: {
+          padding: {
+            left: 0,
+            right: 0,
+            bottom: 0,
+            top: 0
+          }
+        }
+      }
+    });
+  </script> -->
+
 
 </body>
 
