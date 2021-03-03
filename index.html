@@ -38,9 +38,13 @@
   </div>
 
   <div class="container">
-    <h1 style="padding-bottom: 40px; padding-top: 100px;">Dekkingsgraad januari 2021</h1>
-    <p style="">Euro staatsobligaties 56%</p>
-    <canvas id="myChart4" widht="400" height="40" style="padding-bottom: 100px;"></canvas>
+    <h1 style="padding-bottom: 40px; padding-top: 100px;">Obligaties</h1>
+    <p style="margin-bottom: 0px;"><strong>Euro staatsobligaties 56%</strong></p>
+    <canvas id="myChart4" widht="400" height="40" style="padding-bottom: 0px;"></canvas>
+    <p style="margin-bottom: 0px;"><strong>Euro bedrijfsobligaties 17%</strong></p>
+    <canvas id="myChart5" widht="400" height="40" style="padding-bottom: 0px;"></canvas>
+    <p style="margin-bottom: 0px;"><strong>Overig 27%</strong></p>
+    <canvas id="myChart6" widht="400" height="40" style="padding-bottom: 100px;"></canvas>
   </div>
 
 
@@ -79,7 +83,22 @@
         },
 
         tooltips: {
+          backgroundColor: 'rgb(244, 238, 238)',
+          cornerRadius: 5,
+          yPadding: 10,
+          xPadding: 10,
+          bodyFontColor: '#000',
+          titleFontColor: '#000',
+          caretSize: 0,
+          titleAlign: 'center',
+          bodyAlign: 'center',
           enabled: true,
+          custom: function (tooltip) {
+            if (!tooltip) return;
+            // disable displaying the color box;
+            tooltip.displayColors = false;
+          },
+
           mode: 'label',
           //adding % sign in the tooltip
           callbacks: {
@@ -226,6 +245,32 @@
       type: 'doughnut',
       data: data,
       options: {
+        tooltips: {
+          backgroundColor: 'rgb(244, 238, 238)',
+          cornerRadius: 5,
+          yPadding: 10,
+          xPadding: 10,
+          bodyFontColor: '#000',
+          titleFontColor: '#000',
+          caretSize: 0,
+          titleAlign: 'center',
+          bodyAlign: 'center',
+          enabled: true,
+          custom: function (tooltip) {
+            if (!tooltip) return;
+            // disable displaying the color box;
+            tooltip.displayColors = false;
+          },
+
+          mode: 'label',
+          //adding % sign in the tooltip
+          callbacks: {
+            label: function (tooltipItem, data) {
+              return data['datasets'][0]['data'][tooltipItem['index']] + '%';
+            }
+          }
+
+        },
         plugins: {
           labels: {
             // position to draw label, available value is 'default', 'border' and 'outside'
@@ -325,6 +370,167 @@
               display: false
             },
 
+          }]
+
+        }
+      }
+    });
+  </script>
+  <script>
+    var myChart = document.getElementById('myChart5').getContext('2d');
+
+    //Global options
+    Chart.defaults.global.defaultFontFamily = '"Lato",sans-serif';
+    Chart.defaults.global.defaultFontSize = 16;
+    Chart.defaults.global.defaultFontColor = '#000000';
+
+    var massPopChart = new Chart(myChart, {
+
+      type: 'horizontalBar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data: {
+        labels: ['jan.'],
+        datasets: [{
+          labels: 'Percentage',
+          data: [113,],
+          backgroundColor: '#b3effe',
+          hoverBackgroundColor: '#0098d9',
+          fontStyle: "bold",
+        }]
+      },
+      options: {
+        labels: {
+          display: false
+        },
+        //Duration animation
+        animation: {
+          duration: 3000,
+        },
+
+        //Remove legend
+        legend: {
+          display: false
+        },
+
+        tooltips: {
+          enabled: false,
+          mode: 'label',
+          //adding % sign in the tooltip
+          callbacks: {
+            label: function (tooltipItem, data) {
+              return data['datasets'][0]['data'][tooltipItem['index']] + '%';
+            }
+          }
+
+        },
+        layout: {
+          //Padding arround chart
+          padding: {
+            left: 0,
+            right: 0,
+            bottom: 0,
+            top: 0
+          }
+        },
+        scales: {
+
+          xAxes: [{
+            display: false, //this will remove all the x-axis grid lines  
+            //Bar widht
+            barPercentage: 0.5,
+            //Styling grid lines
+            gridLines: {
+              display: false
+            }
+          }],
+
+          yAxes: [{
+            display: false, //this will remove all the x-axis grid lines
+            gridLines: {
+              //remove first border
+              drawBorder: false,
+              display: false
+            },
+
+          }]
+
+        }
+      }
+    });
+  </script>
+  <script>
+    var myChart = document.getElementById('myChart6').getContext('2d');
+
+    //Global options
+    Chart.defaults.global.defaultFontFamily = '"Lato",sans-serif';
+    Chart.defaults.global.defaultFontSize = 16;
+    Chart.defaults.global.defaultFontColor = '#000000';
+
+    var massPopChart = new Chart(myChart, {
+
+      type: 'horizontalBar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data: {
+        labels: ['jan.'],
+        datasets: [{
+          labels: 'Percentage',
+          data: [27,],
+          backgroundColor: '#b3effe',
+          hoverBackgroundColor: '#0098d9',
+          fontStyle: "bold",
+        }]
+      },
+      options: {
+        labels: {
+          display: false
+        },
+        //Duration animation
+        animation: {
+          duration: 3000,
+        },
+
+        //Remove legend
+        legend: {
+          display: false
+        },
+
+        tooltips: {
+          enabled: false,
+          mode: 'label',
+          //adding % sign in the tooltip
+          callbacks: {
+            label: function (tooltipItem, data) {
+              return data['datasets'][0]['data'][tooltipItem['index']] + '%';
+            }
+          }
+
+        },
+        layout: {
+          //Padding arround chart
+          padding: {
+            left: 0,
+            right: 0,
+            bottom: 0,
+            top: 0
+          }
+        },
+        scales: {
+
+          xAxes: [{
+            display: false, //this will remove all the x-axis grid lines  
+            //Bar widht
+            barPercentage: 0.5,
+            //Styling grid lines
+            gridLines: {
+              display: false
+            }
+          }],
+
+          yAxes: [{
+            display: false, //this will remove all the x-axis grid lines
+            gridLines: {
+              //remove first border
+              drawBorder: false,
+              display: false
+            },
           }]
 
         }
