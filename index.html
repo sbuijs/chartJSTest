@@ -27,10 +27,6 @@
 
   </div>
 
-  <div class="container">
-    <h1 style="padding-bottom: 40px; padding-top: 100px;">Dekkingsgraad januari 2021</h1>
-    <canvas id="myChart2" style="padding-bottom: 100px;"></canvas>
-  </div>
 
   <div class="container">
     <h1 style="padding-bottom: 40px; padding-top: 100px;">Dekkingsgraad januari 2021</h1>
@@ -48,8 +44,13 @@
   </div>
 
 
+  <!--<div class="container">
+      <h1 style="padding-bottom: 40px; padding-top: 100px;">Dekkingsgraad januari 2021</h1>
+      <canvas id="myChart2" style="padding-bottom: 100px;"></canvas>
+    </div>-->
 
 
+  <!--------- BarChart -------------------------------------------------------------------------------->
   <script>
     var myChart = document.getElementById('myChart').getContext('2d');
 
@@ -158,54 +159,9 @@
 
 
 
-  <script>
-    var data = {
-      labels: [
-        "Dekking",
-        " "
-      ],
-      datasets: [
-        {
-          data: [112, 88],
-          backgroundColor: [
-            "#b3effe"
-          ],
-          hoverBackgroundColor: [
-            "#0098d9"
-          ],
-          hoverBorderColor: [
-            "#0098d9"
-          ],
-          hoverBorderWidth: 0
-        }]
-    };
-
-    var ctx = document.getElementById("myChart2");
-
-    // And for a doughnut chart
-    var myDoughnutChart = new Chart(ctx, {
-      type: 'doughnut',
-      data: data,
-      options: {
-        //Duration animation
-        animation: {
-          duration: 2200,
-        },
-        //Change the thickness of the line
-        cutoutPercentage: 70,
-        //Remove legend
-        legend: {
-          display: false
-        },
-        rotation: 1 * Math.PI,
-        circumference: 1 * Math.PI
-      }
-    });
-  </script>
 
 
-
-
+  <!--------- Full circle -------------------------------------------------------------------------------->
   <script>
     var data = {
       labels: [
@@ -295,25 +251,39 @@
     });
   </script>
 
+
+
+  <!--------- First sinle bar chart -------------------------------------------------------------------------------->
+
+
+
   <script>
-    var myChart = document.getElementById('myChart4').getContext('2d');
+    var thisChart = document.getElementById('myChart4').getContext('2d');
 
     //Global options
     Chart.defaults.global.defaultFontFamily = '"Lato",sans-serif';
     Chart.defaults.global.defaultFontSize = 16;
     Chart.defaults.global.defaultFontColor = '#000000';
 
-    var massPopChart = new Chart(myChart, {
-
-      type: 'horizontalBar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+    var stackedBar = new Chart(thisChart, {
+      type: 'horizontalBar',
       data: {
-        labels: ['jan.'],
+        labels: ['Euro staatsopbligaties', 'totaal'],
         datasets: [{
-          labels: 'Percentage',
-          data: [113,],
-          backgroundColor: '#b3effe',
-          hoverBackgroundColor: '#0098d9',
-          fontStyle: "bold",
+          label: "Euro staatsopbligaties",
+          data: [56],
+          backgroundColor: ['#b3effe'],
+          hoverBackgroundColor: [
+            "#0098d9"
+          ]
+        },
+        {
+          label: "Totaal",
+          data: [100],
+          backgroundColor: ['#F4EEEE'],
+          hoverBackgroundColor: [
+            "#F4EEEE"
+          ],
         }]
       },
       options: {
@@ -333,68 +303,68 @@
         tooltips: {
           enabled: false,
           mode: 'label',
-          //adding % sign in the tooltip
-          callbacks: {
-            label: function (tooltipItem, data) {
-              return data['datasets'][0]['data'][tooltipItem['index']] + '%';
-            }
-          }
+        },
 
-        },
-        layout: {
-          //Padding arround chart
-          padding: {
-            left: 0,
-            right: 0,
-            bottom: 0,
-            top: 0
-          }
-        },
         scales: {
 
           xAxes: [{
+            stacked: true,
             display: false, //this will remove all the x-axis grid lines  
             //Bar widht
             barPercentage: 0.5,
             //Styling grid lines
             gridLines: {
               display: false
-            }
+            },
+            ticks: {
+              min: 0,
+              max: 100,
+              stepSize: 5,
+            },
           }],
 
           yAxes: [{
+            stacked: true,
             display: false, //this will remove all the x-axis grid lines
             gridLines: {
               //remove first border
               drawBorder: false,
               display: false
             },
-
           }]
-
         }
       }
     });
   </script>
+
+  <!--------- Second sinle bar chart -------------------------------------------------------------------------------->
   <script>
-    var myChart = document.getElementById('myChart5').getContext('2d');
+    var thisChart = document.getElementById('myChart5').getContext('2d');
 
     //Global options
     Chart.defaults.global.defaultFontFamily = '"Lato",sans-serif';
     Chart.defaults.global.defaultFontSize = 16;
     Chart.defaults.global.defaultFontColor = '#000000';
 
-    var massPopChart = new Chart(myChart, {
-
-      type: 'horizontalBar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+    var stackedBar = new Chart(thisChart, {
+      type: 'horizontalBar',
       data: {
-        labels: ['jan.'],
+        labels: ['Euro staatsopbligaties', 'totaal'],
         datasets: [{
-          labels: 'Percentage',
-          data: [113,],
-          backgroundColor: '#b3effe',
-          hoverBackgroundColor: '#0098d9',
-          fontStyle: "bold",
+          label: "Euro bedrijfsobligatie",
+          data: [17],
+          backgroundColor: ['#b3effe'],
+          hoverBackgroundColor: [
+            "#0098d9"
+          ],
+        },
+        {
+          label: "Totaal",
+          data: [100],
+          backgroundColor: ['#F4EEEE'],
+          hoverBackgroundColor: [
+            "#F4EEEE"
+          ],
         }]
       },
       options: {
@@ -414,68 +384,67 @@
         tooltips: {
           enabled: false,
           mode: 'label',
-          //adding % sign in the tooltip
-          callbacks: {
-            label: function (tooltipItem, data) {
-              return data['datasets'][0]['data'][tooltipItem['index']] + '%';
-            }
-          }
+        },
 
-        },
-        layout: {
-          //Padding arround chart
-          padding: {
-            left: 0,
-            right: 0,
-            bottom: 0,
-            top: 0
-          }
-        },
         scales: {
 
           xAxes: [{
+            stacked: true,
             display: false, //this will remove all the x-axis grid lines  
             //Bar widht
             barPercentage: 0.5,
             //Styling grid lines
             gridLines: {
               display: false
-            }
+            },
+            ticks: {
+              min: 0,
+              max: 100,
+              stepSize: 5,
+            },
           }],
 
           yAxes: [{
+            stacked: true,
             display: false, //this will remove all the x-axis grid lines
             gridLines: {
               //remove first border
               drawBorder: false,
               display: false
             },
-
           }]
-
         }
       }
     });
   </script>
+  <!--------- Third sinle bar chart -------------------------------------------------------------------------------->
   <script>
-    var myChart = document.getElementById('myChart6').getContext('2d');
+    var thisChart = document.getElementById('myChart6').getContext('2d');
 
     //Global options
     Chart.defaults.global.defaultFontFamily = '"Lato",sans-serif';
     Chart.defaults.global.defaultFontSize = 16;
     Chart.defaults.global.defaultFontColor = '#000000';
 
-    var massPopChart = new Chart(myChart, {
-
-      type: 'horizontalBar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+    var stackedBar = new Chart(thisChart, {
+      type: 'horizontalBar',
       data: {
-        labels: ['jan.'],
+        labels: ['Overig', 'totaal'],
         datasets: [{
-          labels: 'Percentage',
-          data: [27,],
-          backgroundColor: '#b3effe',
-          hoverBackgroundColor: '#0098d9',
-          fontStyle: "bold",
+          label: "Overig",
+          data: [27],
+          backgroundColor: ['#b3effe'],
+          hoverBackgroundColor: [
+            "#0098d9"
+          ],
+        },
+        {
+          label: "Totaal",
+          data: [100],
+          backgroundColor: ['#F4EEEE'],
+          hoverBackgroundColor: [
+            "#F4EEEE"
+          ],
         }]
       },
       options: {
@@ -495,36 +464,28 @@
         tooltips: {
           enabled: false,
           mode: 'label',
-          //adding % sign in the tooltip
-          callbacks: {
-            label: function (tooltipItem, data) {
-              return data['datasets'][0]['data'][tooltipItem['index']] + '%';
-            }
-          }
+        },
 
-        },
-        layout: {
-          //Padding arround chart
-          padding: {
-            left: 0,
-            right: 0,
-            bottom: 0,
-            top: 0
-          }
-        },
         scales: {
 
           xAxes: [{
+            stacked: true,
             display: false, //this will remove all the x-axis grid lines  
             //Bar widht
             barPercentage: 0.5,
             //Styling grid lines
             gridLines: {
               display: false
-            }
+            },
+            ticks: {
+              min: 0,
+              max: 100,
+              stepSize: 5,
+            },
           }],
 
           yAxes: [{
+            stacked: true,
             display: false, //this will remove all the x-axis grid lines
             gridLines: {
               //remove first border
@@ -532,11 +493,60 @@
               display: false
             },
           }]
-
         }
       }
     });
   </script>
+
+
+
+  <!--------- Half circle -------------------------------------------------------------------------------->
+
+  <!-- <script>
+        var data = {
+          labels: [
+            "Dekking",
+            " "
+          ],
+          datasets: [
+            {
+              data: [112, 88],
+              backgroundColor: [
+                "#b3effe"
+              ],
+              hoverBackgroundColor: [
+                "#0098d9"
+              ],
+              hoverBorderColor: [
+                "#0098d9"
+              ],
+              hoverBorderWidth: 0
+            }]
+        };
+    
+        var ctx = document.getElementById("myChart2");
+    
+        // And for a doughnut chart
+        var myDoughnutChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: data,
+          options: {
+            //Duration animation
+            animation: {
+              duration: 2200,
+            },
+            //Change the thickness of the line
+            cutoutPercentage: 70,
+            //Remove legend
+            legend: {
+              display: false
+            },
+            rotation: 1 * Math.PI,
+            circumference: 1 * Math.PI
+          }
+        });
+      </script>
+    -->
 </body>
 
 </html>
