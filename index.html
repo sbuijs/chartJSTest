@@ -13,26 +13,37 @@
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <!-- stylesheets-->
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="web/main.css">
 
   <title>ChartJSTest</title>
 
 </head>
 
 <body>
+  <!--------- BarChart -------------------------------------------------------------------------------->
   <div class="container">
     <h1 style="padding-bottom: 40px; padding-top: 100px;">Dekkingsgraad 2020</h1>
-
     <canvas id="myChart" style="padding-bottom: 100px;"></canvas>
-
   </div>
 
-
+  <!--------- Full circle -------------------------------------------------------------------------------->
   <div class="container">
     <h1 style="padding-bottom: 40px; padding-top: 100px;">Dekkingsgraad januari 2021</h1>
-    <canvas id="myChart3" style="padding-bottom: 100px;"></canvas>
+
+    <!--<canvas id="myChart3" style="padding-bottom: 100px;">
+      </canvas>-->
+    <div class="container-donut">
+      <canvas id="myChart3" width="170"></canvas>
+      <div class="donut-inner">
+        <span class="donut-inner__title">112%</span>
+      </div>
+    </div>
+
   </div>
 
+  </div>
+
+  <!--------- Single horizontal charts -------------------------------------------------------------------------------->
   <div class="container">
     <h1 style="padding-bottom: 40px; padding-top: 100px;">Obligaties</h1>
     <p style="margin-bottom: 0px;"><strong>Euro staatsobligaties 56%</strong></p>
@@ -41,6 +52,7 @@
     <canvas id="myChart5" widht="400" height="40" style="padding-bottom: 0px;"></canvas>
     <p style="margin-bottom: 0px;"><strong>Overig 27%</strong></p>
     <canvas id="myChart6" widht="400" height="40" style="padding-bottom: 100px;"></canvas>
+    <canvas id="myChart7" widht="400" height="40" style="padding-bottom: 100px;"></canvas>
   </div>
 
 
@@ -254,9 +266,6 @@
 
 
   <!--------- First sinle bar chart -------------------------------------------------------------------------------->
-
-
-
   <script>
     var thisChart = document.getElementById('myChart4').getContext('2d');
 
@@ -548,6 +557,7 @@
         });
       </script>
     -->
+
 </body>
 
 </html>
