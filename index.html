@@ -310,8 +310,29 @@
         },
 
         tooltips: {
-          enabled: false,
-          mode: 'label',
+          backgroundColor: 'rgb(244, 238, 238)',
+          cornerRadius: 5,
+          yPadding: 10,
+          xPadding: 10,
+          bodyFontColor: '#000',
+          titleFontColor: '#000',
+          caretSize: 0,
+          titleAlign: 'center',
+          bodyAlign: 'center',
+          enabled: true,
+          custom: function (tooltip) {
+            if (!tooltip) return;
+            // disable displaying the color box;
+            tooltip.displayColors = false;
+          },
+          mode: 'nearest',
+
+          //adding % sign in the tooltip
+          callbacks: {
+            label: function (tooltipItem, data) {
+              return data['datasets'][0]['data'][tooltipItem['index']] + '%';
+            }
+          }
         },
 
         scales: {
@@ -358,7 +379,7 @@
     var stackedBar = new Chart(thisChart, {
       type: 'horizontalBar',
       data: {
-        labels: ['Euro staatsopbligaties', 'totaal'],
+        labels: ['Euro bedrijfsobligatie', 'totaal'],
         datasets: [{
           label: "Euro bedrijfsobligatie",
           data: [17],
@@ -389,11 +410,32 @@
         legend: {
           display: false
         },
-
         tooltips: {
-          enabled: false,
-          mode: 'label',
+          backgroundColor: 'rgb(244, 238, 238)',
+          cornerRadius: 5,
+          yPadding: 10,
+          xPadding: 10,
+          bodyFontColor: '#000',
+          titleFontColor: '#000',
+          caretSize: 0,
+          titleAlign: 'center',
+          bodyAlign: 'center',
+          enabled: true,
+          custom: function (tooltip) {
+            if (!tooltip) return;
+            // disable displaying the color box;
+            tooltip.displayColors = false;
+          },
+          mode: 'nearest',
+
+          //adding % sign in the tooltip
+          callbacks: {
+            label: function (tooltipItem, data) {
+              return data['datasets'][0]['data'][tooltipItem['index']] + '%';
+            }
+          }
         },
+
 
         scales: {
 
@@ -472,9 +514,31 @@
         },
 
         tooltips: {
-          enabled: false,
-          mode: 'label',
+          backgroundColor: 'rgb(244, 238, 238)',
+          cornerRadius: 5,
+          yPadding: 10,
+          xPadding: 10,
+          bodyFontColor: '#000',
+          titleFontColor: '#000',
+          caretSize: 0,
+          titleAlign: 'center',
+          bodyAlign: 'center',
+          enabled: true,
+          custom: function (tooltip) {
+            if (!tooltip) return;
+            // disable displaying the color box;
+            tooltip.displayColors = false;
+          },
+          mode: 'nearest',
+
+          //adding % sign in the tooltip
+          callbacks: {
+            label: function (tooltipItem, data) {
+              return data['datasets'][0]['data'][tooltipItem['index']] + '%';
+            }
+          }
         },
+
 
         scales: {
 
