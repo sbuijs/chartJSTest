@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍩</text></svg>">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+        integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- stylesheets-->
+    <link rel="stylesheet" href="web/main.css">
+
+    <title>De donut test</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="padding-bottom: 40px; padding-top: 20px;">De donut test</h1>
+    </div>
+
+
+    <!--------- Full circle -------------------------------------------------------------------------------->
+
+    <div class="container" style="padding-bottom: 100px;">
+        <h2 style="padding-bottom: 40px; padding-bottom: 100px;">🍩 Donut 1</h2>
+
+        <!--<canvas id="myChart3" style="padding-bottom: 100px;">
+      </canvas>-->
+        <div class="container-donut">
+            <canvas id="donut-1" width="170"></canvas>
+            <div class="donut-inner">
+                <span id="amount">112%</span>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+    <!--------- Full circle -------------------------------------------------------------------------------->
+
+    <div class="container" style="padding-bottom: 100px;">
+        <h2 style="padding-bottom: 40px; padding-bottom: 100px;">🍩 Donut 2</h2>
+
+        <!--<canvas id="myChart3" style="padding-bottom: 100px;">
+              </canvas>-->
+        <div class="container-donut">
+            <canvas id="donut-2" width="170"></canvas>
+            <div class="donut-inner">
+                <span id="amount">112%</span>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+    <!--------- Full circle -------------------------------------------------------------------------------->
+
+    <div class="container" style="padding-bottom: 100px;">
+        <h2 style="padding-bottom: 40px; padding-bottom: 100px;">🍩 Donut 3</h2>
+
+        <!--<canvas id="myChart3" style="padding-bottom: 100px;">
+                  </canvas>-->
+        <div class="container-donut">
+            <canvas id="donut-3" width="170"></canvas>
+            <div class="donut-inner">
+                <span id="amount">112%</span>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+
+
+
+    <!--------- Full circle 1 -------------------------------------------------------------------------------->
+    <script>
+        var data = {
+            labels: [
+                "Dekking",
+                " "
+            ],
+            datasets: [
+                {
+                    data: [112, 88],
+                    backgroundColor: [
+                        "#b3effe"
+                    ],
+                    hoverBackgroundColor: [
+                        "#0098d9"
+                    ],
+                    hoverBorderColor: [
+                        "#0098d9"
+                    ],
+                    hoverBorderWidth: 0
+                }]
+        };
+
+        var ctx = document.getElementById("donut-1");
+
+        // And for a doughnut chart
+        var myDoughnutChart = new Chart(ctx, {
+            labels: {
+                render: 'percentage',
+                fontColor: function (data) {
+                    var rgb = hexToRgb(data.dataset.backgroundColor[data.index]);
+                    var threshold = 140;
+                    var luminance = 0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b;
+                    return luminance > threshold ? 'black' : 'white';
+                },
+                precision: 2
+            },
+            type: 'doughnut',
+            data: data,
+            options: {
+                //remove white border
+                elements: {
+                    arc: {
+                        borderWidth: 0
+                    }
+                },
+                tooltips: {
+                    backgroundColor: 'rgb(244, 238, 238)',
+                    cornerRadius: 5,
+                    yPadding: 10,
+                    xPadding: 10,
+                    bodyFontColor: '#000',
+                    titleFontColor: '#000',
+                    caretSize: 0,
+                    titleAlign: 'center',
+                    bodyAlign: 'center',
+                    enabled: true,
+                    custom: function (tooltip) {
+                        if (!tooltip) return;
+                        // disable displaying the color box;
+                        tooltip.displayColors = false;
+                    },
+
+                    mode: 'label',
+                    //adding % sign in the tooltip
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return data['datasets'][0]['data'][tooltipItem['index']] + '%';
+                        }
+                    }
+
+                },
+                plugins: {
+                    labels: {
+                        // position to draw label, available value is 'default', 'border' and 'outside'
+                        // bar chart ignores this
+                        // default is 'default'
+                        position: 'outside',
+                    }
+                },
+
+                //Duration animation
+                animation: {
+                    duration: 2200,
+                },
+                //Change the thickness of the line
+                cutoutPercentage: 70,
+                //Remove legend
+                legend: {
+                    display: false
+                },
+
+            }
+        });
+    </script>
+
+
+    <!--------- Full circle 2 -------------------------------------------------------------------------------->
+    <script>
+        var data = {
+            labels: [
+                "Dekking",
+                " "
+            ],
+            datasets: [
+                {
+                    data: [112, 88],
+                    backgroundColor: [
+                        "#b3effe"
+                    ],
+                    hoverBackgroundColor: [
+                        "#0098d9"
+                    ],
+                    hoverBorderColor: [
+                        "#0098d9"
+                    ],
+                    hoverBorderWidth: 0
+                }]
+        };
+
+        var ctx = document.getElementById("donut-2");
+
+        // And for a doughnut chart
+        var myDoughnutChart = new Chart(ctx, {
+            labels: {
+                render: 'percentage',
+                fontColor: function (data) {
+                    var rgb = hexToRgb(data.dataset.backgroundColor[data.index]);
+                    var threshold = 140;
+                    var luminance = 0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b;
+                    return luminance > threshold ? 'black' : 'white';
+                },
+                precision: 2
+            },
+            type: 'doughnut',
+            data: data,
+            options: {
+                //remove white border
+                elements: {
+                    arc: {
+                        borderWidth: 0
+                    }
+                },
+                tooltips: {
+                    backgroundColor: 'rgb(244, 238, 238)',
+                    cornerRadius: 5,
+                    yPadding: 10,
+                    xPadding: 10,
+                    bodyFontColor: '#000',
+                    titleFontColor: '#000',
+                    caretSize: 0,
+                    titleAlign: 'center',
+                    bodyAlign: 'center',
+                    enabled: true,
+                    custom: function (tooltip) {
+                        if (!tooltip) return;
+                        // disable displaying the color box;
+                        tooltip.displayColors = false;
+                    },
+
+                    mode: 'label',
+                    //adding % sign in the tooltip
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return data['datasets'][0]['data'][tooltipItem['index']] + '%';
+                        }
+                    }
+
+                },
+                plugins: {
+                    labels: {
+                        // position to draw label, available value is 'default', 'border' and 'outside'
+                        // bar chart ignores this
+                        // default is 'default'
+                        position: 'outside',
+                    }
+                },
+
+                //Duration animation
+                animation: {
+                    duration: 2200,
+                },
+                //Change the thickness of the line
+                cutoutPercentage: 70,
+                //Remove legend
+                legend: {
+                    display: false
+                },
+
+            }
+        });
+    </script>
+
+
+    <!--------- Full circle 3 -------------------------------------------------------------------------------->
+    <script>
+        var data = {
+            labels: [
+                "Dekking",
+                " "
+            ],
+            datasets: [
+                {
+                    data: [112, 88],
+                    backgroundColor: [
+                        "#b3effe"
+                    ],
+                    hoverBackgroundColor: [
+                        "#0098d9"
+                    ],
+                    hoverBorderColor: [
+                        "#0098d9"
+                    ],
+                    hoverBorderWidth: 0
+                }]
+        };
+
+        var ctx = document.getElementById("donut-3");
+
+        // And for a doughnut chart
+        var myDoughnutChart = new Chart(ctx, {
+            labels: {
+                render: 'percentage',
+                fontColor: function (data) {
+                    var rgb = hexToRgb(data.dataset.backgroundColor[data.index]);
+                    var threshold = 140;
+                    var luminance = 0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b;
+                    return luminance > threshold ? 'black' : 'white';
+                },
+                precision: 2
+            },
+            type: 'doughnut',
+            data: data,
+            options: {
+                //remove white border
+                elements: {
+                    arc: {
+                        borderWidth: 0
+                    }
+                },
+                tooltips: {
+                    backgroundColor: 'rgb(244, 238, 238)',
+                    cornerRadius: 5,
+                    yPadding: 10,
+                    xPadding: 10,
+                    bodyFontColor: '#000',
+                    titleFontColor: '#000',
+                    caretSize: 0,
+                    titleAlign: 'center',
+                    bodyAlign: 'center',
+                    enabled: true,
+                    custom: function (tooltip) {
+                        if (!tooltip) return;
+                        // disable displaying the color box;
+                        tooltip.displayColors = false;
+                    },
+
+                    mode: 'label',
+                    //adding % sign in the tooltip
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return data['datasets'][0]['data'][tooltipItem['index']] + '%';
+                        }
+                    }
+
+                },
+                plugins: {
+                    labels: {
+                        // position to draw label, available value is 'default', 'border' and 'outside'
+                        // bar chart ignores this
+                        // default is 'default'
+                        position: 'outside',
+                    }
+                },
+
+                //Duration animation
+                animation: {
+                    duration: 2200,
+                },
+                //Change the thickness of the line
+                cutoutPercentage: 70,
+                //Remove legend
+                legend: {
+                    display: false
+                },
+
+            }
+        });
+    </script>
+
+
+
+    <script src="main.js"></script>
+</body>
+
+</html>

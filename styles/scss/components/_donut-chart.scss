@@ -13,16 +13,15 @@
         left: 0;
         right: 0;
         transform: translateY(-50%);
-
-        &__title {
-            font-size: 80px;
-            font-weight: 600;
-            @media only screen and (max-width: 340px) {
-                font-size: 26px;
-            }
-            @media only screen and (max-width: 766px) {
-                font-size: 35px;
-            }
+    }
+    #amount {
+        font-size: 80px;
+        font-weight: 600;
+        @media only screen and (max-width: 340px) {
+            font-size: 26px;
+        }
+        @media only screen and (max-width: 766px) {
+            font-size: 35px;
         }
     }
 }
