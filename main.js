@@ -14,26 +14,15 @@ var objThree = {
 };
 
 var count = 0;
-const speed = 200;
 
-
-
-function searchID(name){
-    var el = document.getElementById(name);
-    console.log(el);
+function searchDonuts(name){
+    var el = document.getElementsByClassName(name);
+    for (var i = 0, l = el.length; i < l; i++) {
+        console.log('Dit is een donut');
+        
+    }
 }
 
-
-
-function changeContent(text) {
-    var el = document.getElementById('amount');
-    if (count > objTwo.amount) return;
-    console.log('Het werkt?');
-    el.innerText = count + "%";
-	el.title = 'changed';
-	el.classList.add('toggle');
-    
-}
 
 function findAndUpdate() {
 	var btn = document.getElementById('addOne');
@@ -46,7 +35,7 @@ function findAndUpdate() {
 
 document.addEventListener('DOMContentLoaded', function (event) {
     console.log('DOM ready');
-    searchID('amount');
+    searchDonuts('donut');
     changeContent(obj.startAmount +"%");
     findAndUpdate();
 });
