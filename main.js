@@ -14,6 +14,8 @@ var objThree = {
 };
 
 var count = 0;
+const speed = 200;
+
 
 
 function searchID(name){
@@ -21,11 +23,12 @@ function searchID(name){
     console.log(el);
 }
 
+
+
 function changeContent(text) {
     var el = document.getElementById('amount');
     if (count > objTwo.amount) return;
     console.log('Het werkt?');
-
     el.innerText = count + "%";
 	el.title = 'changed';
 	el.classList.add('toggle');
