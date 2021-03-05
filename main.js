@@ -23,11 +23,10 @@ function searchID(name){
 
 function changeContent(text) {
     var el = document.getElementById('amount');
-    if (count > objOne.amount) return;
+    if (count > objTwo.amount) return;
     console.log('Het werkt?');
 
-    el.innerText = count;
-	el.style.border = '10px solid pink';
+    el.innerText = count + "%";
 	el.title = 'changed';
 	el.classList.add('toggle');
     
@@ -41,7 +40,6 @@ function findAndUpdate() {
 		changeContent();
 	}
 }
-
 
 document.addEventListener('DOMContentLoaded', function (event) {
     console.log('DOM ready');
