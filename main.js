@@ -1,6 +1,8 @@
+var obj ={
+startAmount: "0"
+}
 var objOne = {
-    startAmount: "0",
-	amount: "25",
+    amount: "25",
 };
 
 var objTwo = {
@@ -22,14 +24,19 @@ function searchID(name){
 }
 
 function changeContent(text) {
-	var el = document.getElementById('amount');
+    var el = document.getElementById('amount');
+    // if (count > objOne.amount) return;
+    // console.log('Het werkt?');
     el.innerText = text;
 }
+
 
 
 document.addEventListener('DOMContentLoaded', function (event) {
     console.log('DOM ready');
     hello('Steef!');
     searchID('amount');
-    changeContent(objOne.startAmount +"%");
+    changeContent(obj.startAmount +"%");
+    
 });
+
