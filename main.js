@@ -13,9 +13,7 @@ var objThree = {
     amount: "75"
 };
 
-function hello(name) {
-    console.log('Hello ' + name + '!');
-}
+var count = 0;
 
 
 function searchID(name){
@@ -25,18 +23,30 @@ function searchID(name){
 
 function changeContent(text) {
     var el = document.getElementById('amount');
-    // if (count > objOne.amount) return;
-    // console.log('Het werkt?');
-    el.innerText = text;
+    if (count > objOne.amount) return;
+    console.log('Het werkt?');
+
+    el.innerText = count;
+	el.style.border = '10px solid pink';
+	el.title = 'changed';
+	el.classList.add('toggle');
+    
 }
 
+function findAndUpdate() {
+	var btn = document.getElementById('addOne');
+	btn.onclick = function () {
+		console.log('click');
+		count++;
+		changeContent();
+	}
+}
 
 
 document.addEventListener('DOMContentLoaded', function (event) {
     console.log('DOM ready');
-    hello('Steef!');
     searchID('amount');
     changeContent(obj.startAmount +"%");
-    
+    findAndUpdate();
 });
 
