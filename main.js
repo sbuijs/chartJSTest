@@ -1,3 +1,4 @@
+/*
 var obj ={
 startAmount: "0",
 amount: "25"
@@ -97,3 +98,5 @@ document.addEventListener('DOMContentLoaded', function (event) {
 });
 
 //in de html wordt de waarde gezet
+
+*/
