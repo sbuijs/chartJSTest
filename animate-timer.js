@@ -1,12 +1,11 @@
-//
+
 let countUpArr = [];
 let last_known_scroll_position = 0.0;
 let ticking = false;
 
-//verkrijgen van het getal dat in de span class staat.
+
 function collectData() {
 	
-	//als de array length is kleiner of gelijk aan 0 and 
 	var arr = document.getElementsByClassName('animate-timer');
 	if (arr.length <= 0) return;
 	for (let i = 0; i < arr.length; i++) {
