@@ -39,19 +39,19 @@ h1 {
           transform: translateY(-50%);
 }
 
-.container #amount {
+.container .donut {
   font-size: 80px;
   font-weight: 600;
 }
 
 @media only screen and (max-width: 340px) {
-  .container #amount {
+  .container .donut {
     font-size: 26px;
   }
 }
 
 @media only screen and (max-width: 766px) {
-  .container #amount {
+  .container .donut {
     font-size: 35px;
   }
 }
