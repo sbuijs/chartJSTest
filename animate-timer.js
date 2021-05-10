@@ -7,18 +7,24 @@ let ticking = false;
 function collectData() {
 	
 	var arr = document.getElementsByClassName('animate-timer');
+	//if the class name is not there, don't continue. returned nothing. 
 	if (arr.length <= 0) return;
+
+	//arr.length = the amount of donuts
 	for (let i = 0; i < arr.length; i++) {
+		//we put the i element into the const el
 		const el = arr[i];
+
 		const obj = {
 			element: el,
 			endValue: parseInt(el.innerHTML),
-			startValue: parseInt(0),
+			// startValue: parseInt(0),
 			isActivate: false,
 			top: offset(el).top,
 			left: offset(el).left,
 		};
 		countUpArr.push(obj);
+		//after getting all the values, set it to 0%
 		el.innerHTML = '0%';
 	}
 
@@ -30,7 +36,7 @@ function collectData() {
 				for (let i = 0; i < countUpArr.length; i++) {
 					var obj = countUpArr[i];
 					var viewH = window.innerHeight;
-					if (last_known_scroll_position >= (obj.top - (viewH / 2)) && countUpArr[i].isActivate == false) {
+					if (last_known_scroll_position >= (obj.top - (viewH / 2)) && obj.isActivate == false) {
 						obj.isActivate = true;
 						startAnimation(obj.element, obj.endValue);
 					}
